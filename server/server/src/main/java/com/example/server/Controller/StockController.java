@@ -1,5 +1,6 @@
 package com.example.server.Controller;
 
+import com.example.server.Model.Stock;
 import com.example.server.Service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/innovation")
@@ -23,7 +26,7 @@ public class StockController {
 
     @GetMapping("/displayStocks")
     public String displayStocks(Model model){
-        List<Stock> stocks = stockService.getAllStocks();
+        List<Stock> stocks = stockService.listAll();
         model.addAttribute("stocks", stocks);
         return "stocks/list";
     }
@@ -33,7 +36,7 @@ public class StockController {
     @GetMapping("/addStocks")
     public String inputForm(Model model){
         model.addAttribute("stock",new Stock());
-        return "stocks/input"
+        return "stocks/input";
     }
 
     //株式追加POST処理
