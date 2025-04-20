@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>株式一覧</title>
+</head>
+<body>
+<h1>株式一覧</h1>
+<table border="1">
+    <tr>
+
+        <th>ティッカー</th>
+        <th>銘柄名</th>
+        <th>上場市場</th>
+        <th>発行株数</th>
+    </tr>
+    <tr th:each="stock : ${stocks}">
+<!--        //stockオブジェクトのフィールドを表示するためにはstock.field名にする-->
+        <td th:text="${stock.ticker}">XXXX</td>
+        <td th:text="${stock.name}">銘柄名</td>
+        <td th:text="${stock.exchangeMarket}">銘柄名</td>
+        <td th:text="${stock.shares_issued}">10000</td>
+    </tr>
+</table>
+
+<div>
+    <a th:href="@{/innovation}">Homeに戻る</a>
+</div>
+</body>
+</html>

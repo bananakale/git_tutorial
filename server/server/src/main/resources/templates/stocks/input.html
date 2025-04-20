@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>株式追加</title>
+</head>
+<body>
+<h1>株式追加フォーム</h1>
+<form th:action="@{/innovation/addStock}" th:object="${stock}" method="post">
+    <label>ティッカー: <input type="text" th:field="*{ticker}" /></label><br>
+    <label>銘柄名: <input type="text" th:field="*{name}" /></label><br>
+    <label>上場市場:
+<!--        <input type="text" th:field="*{exchangeMarket}" />-->
+<!--        Market.valuesに渡すので、marketsにする。th:などコロンの前にスペース入れない-->
+        <select th:field="*{exchangeMarket}">
+            <option value="" disabled selected>-- 上場市場を選択 --</option>
+            <option th:each="m : ${markets}" th:value="${m}" th:text="${m}"></option>
+        </select>
+
+
+    </label><br>
+    <label>発行株数: <input type="number" th:field="*{shares_issued}" /></label><br>
+    <button type="submit">追加</button>
+</form>
+</body>
+</html>
